@@ -1,0 +1,63 @@
+lamorel_args:
+  log_level: info
+  allow_subgraph_use_whith_gradient: true
+  distributed_setup_args:
+    n_rl_processes: 1
+    n_llm_processes: 1
+  accelerate_args:
+    config_file: accelerate/default_config.yaml
+    machine_rank: 0
+    num_machines: 2
+  llm_args:
+    model_type: seq2seq
+    model_path: t5-small
+    pretrained: true
+    minibatch_size: 4
+    pre_encode_inputs: true
+    parallelism:
+      use_gpu: false
+      model_parallelism_size: 1
+      synchronize_gpus_after_scoring: false
+      empty_cuda_cache_after_scoring: false
+rl_script_args:
+  path: ???
+  seed: 1
+  number_envs: 2
+  num_steps: 250
+  max_episode_steps: 2
+  frames_per_proc: 10
+  reward_shaping_beta: 0
+  discount: 0.99
+  lr: 1e-6
+  beta1: 0.9
+  beta2: 0.999
+  gae_lambda: 0.99
+  entropy_coef: 0.01
+  value_loss_coef: 0.5
+  max_grad_norm: 0.5
+  adam_eps: 1e-5
+  clip_eps: 0.2
+  epochs: 2
+  batch_size: 16
+  action_space: ["turn_left","turn_right","go_forward","pick_up","drop","toggle"]
+  saving_path_logs: "/home/shubham_mt22124/RL_Project/Grounding_LLMs_with_online_RL/experiments/Output/Logs"
+  name_experiment: 'llm_mtrl'
+  name_model: 'T5small'
+  saving_path_model: "/home/shubham_mt22124/RL_Project/Grounding_LLMs_with_online_RL/experiments/Output/Model"
+  name_environment: 'BabyAI-MixedTestLocal-v0'
+  number_episodes: 2
+  language: 'english'
+  load_embedding: true
+  use_action_heads: false
+  template_test: 1
+  zero_shot: true
+  modified_action_space: false
+  new_action_space: #["rotate_left","rotate_right","move_ahead","take","release","switch"]
+  spm_path: "/home/shubham_mt22124/RL_Project/Grounding_LLMs_with_online_RL/experiments/agents/drrn/spm_models/unigram_8k.model"
+  random_agent: true
+  get_example_trajectories: false
+  nbr_obs: 3
+  im_learning: false
+  im_path: ""
+  bot: false
+  output_dir: "/home/shubham_mt22124/RL_Project/Grounding_LLMs_with_online_RL/experiments/Output"

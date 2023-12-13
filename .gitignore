@@ -1,0 +1,14 @@
+useless/
+storage/
+slurm_logs/
+plots/
+outputs/
+notebooks/*
+!notebooks/*.ipynb
+/old_slurms/
+.idea
+.DS_Store
+*.log
+*.checkpoint
+*.pkl
+*.pyc
